@@ -276,7 +276,7 @@ function generateStruct(struct: RaylibApiStruct, structNames: Set<string>): stri
 	lines.push("\t}");
 	lines.push("");
 
-	// toU32 method for structs that can be passed by value (4 bytes or less)
+	// toU32 method for structs that can be passed by value (4 bytes)
 	if (bufferInfo.totalBytes === 4) {
 		lines.push("\t/** Pack struct into a u32 for FFI calls (pass by value) */");
 		lines.push("\ttoU32(): number {");
@@ -287,6 +287,22 @@ function generateStruct(struct: RaylibApiStruct, structNames: Set<string>): stri
 		lines.push(`\tstatic fromU32(value: number): ${struct.name} {`);
 		lines.push(`\t\tconst instance = new ${struct.name}();`);
 		lines.push("\t\tinstance._view.setUint32(0, value, true);");
+		lines.push("\t\treturn instance;");
+		lines.push("\t}");
+		lines.push("");
+	}
+
+	// toU64 method for structs that can be passed by value (8 bytes)
+	if (bufferInfo.totalBytes === 8) {
+		lines.push("\t/** Pack struct into a u64 (bigint) for FFI calls (pass by value) */");
+		lines.push("\ttoU64(): bigint {");
+		lines.push("\t\treturn this._view.getBigUint64(0, true);");
+		lines.push("\t}");
+		lines.push("");
+		lines.push("\t/** Create struct from a packed u64 value */");
+		lines.push(`\tstatic fromU64(value: bigint): ${struct.name} {`);
+		lines.push(`\t\tconst instance = new ${struct.name}();`);
+		lines.push("\t\tinstance._view.setBigUint64(0, value, true);");
 		lines.push("\t\treturn instance;");
 		lines.push("\t}");
 		lines.push("");
@@ -597,10 +613,11 @@ function generateFfiSymbolWithFFIType(func: RaylibApiFunction, structNames: Set<
 }
 
 // Small structs that can be passed by value as packed integers
-// Color (4 bytes) can be passed as u32
+// Color (4 bytes) = u32, Vector2 (8 bytes) = u64
 // Note: Larger structs must be passed by pointer
 const STRUCT_BY_VALUE_FFI_TYPE: Record<string, string> = {
 	Color: "FFIType.u32",
+	Vector2: "FFIType.u64",
 };
 
 function cTypeToFFITypeEnum(cType: string, structNames: Set<string>): string | null {
@@ -714,7 +731,12 @@ function generateFunctionWrapper(func: RaylibApiFunction, structNames: Set<strin
 			// Convert parameters to FFI-compatible types
 			if (STRUCT_BY_VALUE_FFI_TYPE[param.type]) {
 				// Small structs passed by value as packed integers
-				callArgs.push(`${param.name}.toU32()`);
+				const ffiType = STRUCT_BY_VALUE_FFI_TYPE[param.type];
+				if (ffiType === "FFIType.u64") {
+					callArgs.push(`${param.name}.toU64()`);
+				} else {
+					callArgs.push(`${param.name}.toU32()`);
+				}
 			} else if (structNames.has(param.type) || isStructAlias(param.type)) {
 				// Larger structs pass their buffer pointer
 				callArgs.push(`ptr(${param.name}.rawBuffer)`);
@@ -745,8 +767,13 @@ function generateFunctionWrapper(func: RaylibApiFunction, structNames: Set<strin
 
 	if (isStructByValueReturn) {
 		// Small structs returned as packed integers
+		const ffiType = STRUCT_BY_VALUE_FFI_TYPE[func.returnType];
 		lines.push(`\tconst result = ${callExpr};`);
-		lines.push(`\treturn Structs.${func.returnType}.fromU32(result as number);`);
+		if (ffiType === "FFIType.u64") {
+			lines.push(`\treturn Structs.${func.returnType}.fromU64(result as bigint);`);
+		} else {
+			lines.push(`\treturn Structs.${func.returnType}.fromU32(result as number);`);
+		}
 	} else if (isStructReturn) {
 		const structType = resolveStructAlias(func.returnType);
 		lines.push(`\tconst result = ${callExpr};`);

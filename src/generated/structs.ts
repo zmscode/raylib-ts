@@ -54,6 +54,18 @@ export class Vector2 {
 		return clone;
 	}
 
+	/** Pack struct into a u64 (bigint) for FFI calls (pass by value) */
+	toU64(): bigint {
+		return this._view.getBigUint64(0, true);
+	}
+
+	/** Create struct from a packed u64 value */
+	static fromU64(value: bigint): Vector2 {
+		const instance = new Vector2();
+		instance._view.setBigUint64(0, value, true);
+		return instance;
+	}
+
 	/** Create struct from FFI pointer */
 	static fromPointer(p: Pointer, byteOffset: number = 0): Vector2 {
 		const buffer = new Uint8Array(toArrayBuffer(p, byteOffset, 8));

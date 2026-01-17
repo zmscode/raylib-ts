@@ -268,7 +268,7 @@ export const GetCurrentMonitor = getCurrentMonitor;
 /** Get specified monitor position */
 export function getMonitorPosition(monitor: number): Structs.Vector2 {
 	const result = (raylib.symbols.GetMonitorPosition as Function)(monitor);
-	return Structs.Vector2.fromPointer(result as Pointer);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getMonitorPosition */
 export const GetMonitorPosition = getMonitorPosition;
@@ -311,7 +311,7 @@ export const GetMonitorRefreshRate = getMonitorRefreshRate;
 /** Get window position XY on monitor */
 export function getWindowPosition(): Structs.Vector2 {
 	const result = (raylib.symbols.GetWindowPosition as Function)();
-	return Structs.Vector2.fromPointer(result as Pointer);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getWindowPosition */
 export const GetWindowPosition = getWindowPosition;
@@ -319,7 +319,7 @@ export const GetWindowPosition = getWindowPosition;
 /** Get window scale DPI factor */
 export function getWindowScaleDPI(): Structs.Vector2 {
 	const result = (raylib.symbols.GetWindowScaleDPI as Function)();
-	return Structs.Vector2.fromPointer(result as Pointer);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getWindowScaleDPI */
 export const GetWindowScaleDPI = getWindowScaleDPI;
@@ -619,7 +619,7 @@ export const UnloadShader = unloadShader;
 
 /** Get a ray trace from screen position (i.e mouse) */
 export function getScreenToWorldRay(position: Structs.Vector2, camera: Structs.Camera3D): Structs.Ray {
-	const result = (raylib.symbols.GetScreenToWorldRay as Function)(ptr(position.rawBuffer), ptr(camera.rawBuffer));
+	const result = (raylib.symbols.GetScreenToWorldRay as Function)(position.toU64(), ptr(camera.rawBuffer));
 	return Structs.Ray.fromPointer(result as Pointer);
 }
 /** @alias getScreenToWorldRay */
@@ -627,7 +627,7 @@ export const GetScreenToWorldRay = getScreenToWorldRay;
 
 /** Get a ray trace from screen position (i.e mouse) in a viewport */
 export function getScreenToWorldRayEx(position: Structs.Vector2, camera: Structs.Camera3D, width: number, height: number): Structs.Ray {
-	const result = (raylib.symbols.GetScreenToWorldRayEx as Function)(ptr(position.rawBuffer), ptr(camera.rawBuffer), width, height);
+	const result = (raylib.symbols.GetScreenToWorldRayEx as Function)(position.toU64(), ptr(camera.rawBuffer), width, height);
 	return Structs.Ray.fromPointer(result as Pointer);
 }
 /** @alias getScreenToWorldRayEx */
@@ -636,7 +636,7 @@ export const GetScreenToWorldRayEx = getScreenToWorldRayEx;
 /** Get the screen space position for a 3d world space position */
 export function getWorldToScreen(position: Structs.Vector3, camera: Structs.Camera3D): Structs.Vector2 {
 	const result = (raylib.symbols.GetWorldToScreen as Function)(ptr(position.rawBuffer), ptr(camera.rawBuffer));
-	return Structs.Vector2.fromPointer(result as Pointer);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getWorldToScreen */
 export const GetWorldToScreen = getWorldToScreen;
@@ -644,23 +644,23 @@ export const GetWorldToScreen = getWorldToScreen;
 /** Get size position for a 3d world space position */
 export function getWorldToScreenEx(position: Structs.Vector3, camera: Structs.Camera3D, width: number, height: number): Structs.Vector2 {
 	const result = (raylib.symbols.GetWorldToScreenEx as Function)(ptr(position.rawBuffer), ptr(camera.rawBuffer), width, height);
-	return Structs.Vector2.fromPointer(result as Pointer);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getWorldToScreenEx */
 export const GetWorldToScreenEx = getWorldToScreenEx;
 
 /** Get the screen space position for a 2d camera world space position */
 export function getWorldToScreen2D(position: Structs.Vector2, camera: Structs.Camera2D): Structs.Vector2 {
-	const result = (raylib.symbols.GetWorldToScreen2D as Function)(ptr(position.rawBuffer), ptr(camera.rawBuffer));
-	return Structs.Vector2.fromPointer(result as Pointer);
+	const result = (raylib.symbols.GetWorldToScreen2D as Function)(position.toU64(), ptr(camera.rawBuffer));
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getWorldToScreen2D */
 export const GetWorldToScreen2D = getWorldToScreen2D;
 
 /** Get the world space position for a 2d camera screen space position */
 export function getScreenToWorld2D(position: Structs.Vector2, camera: Structs.Camera2D): Structs.Vector2 {
-	const result = (raylib.symbols.GetScreenToWorld2D as Function)(ptr(position.rawBuffer), ptr(camera.rawBuffer));
-	return Structs.Vector2.fromPointer(result as Pointer);
+	const result = (raylib.symbols.GetScreenToWorld2D as Function)(position.toU64(), ptr(camera.rawBuffer));
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getScreenToWorld2D */
 export const GetScreenToWorld2D = getScreenToWorld2D;
@@ -1305,7 +1305,7 @@ export const GetMouseY = getMouseY;
 /** Get mouse position XY */
 export function getMousePosition(): Structs.Vector2 {
 	const result = (raylib.symbols.GetMousePosition as Function)();
-	return Structs.Vector2.fromPointer(result as Pointer);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getMousePosition */
 export const GetMousePosition = getMousePosition;
@@ -1313,7 +1313,7 @@ export const GetMousePosition = getMousePosition;
 /** Get mouse delta between frames */
 export function getMouseDelta(): Structs.Vector2 {
 	const result = (raylib.symbols.GetMouseDelta as Function)();
-	return Structs.Vector2.fromPointer(result as Pointer);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getMouseDelta */
 export const GetMouseDelta = getMouseDelta;
@@ -1349,7 +1349,7 @@ export const GetMouseWheelMove = getMouseWheelMove;
 /** Get mouse wheel movement for both X and Y */
 export function getMouseWheelMoveV(): Structs.Vector2 {
 	const result = (raylib.symbols.GetMouseWheelMoveV as Function)();
-	return Structs.Vector2.fromPointer(result as Pointer);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getMouseWheelMoveV */
 export const GetMouseWheelMoveV = getMouseWheelMoveV;
@@ -1378,7 +1378,7 @@ export const GetTouchY = getTouchY;
 /** Get touch position XY for a touch point index (relative to screen size) */
 export function getTouchPosition(index: number): Structs.Vector2 {
 	const result = (raylib.symbols.GetTouchPosition as Function)(index);
-	return Structs.Vector2.fromPointer(result as Pointer);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getTouchPosition */
 export const GetTouchPosition = getTouchPosition;
@@ -1428,7 +1428,7 @@ export const GetGestureHoldDuration = getGestureHoldDuration;
 /** Get gesture drag vector */
 export function getGestureDragVector(): Structs.Vector2 {
 	const result = (raylib.symbols.GetGestureDragVector as Function)();
-	return Structs.Vector2.fromPointer(result as Pointer);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getGestureDragVector */
 export const GetGestureDragVector = getGestureDragVector;
@@ -1443,7 +1443,7 @@ export const GetGestureDragAngle = getGestureDragAngle;
 /** Get gesture pinch delta */
 export function getGesturePinchVector(): Structs.Vector2 {
 	const result = (raylib.symbols.GetGesturePinchVector as Function)();
-	return Structs.Vector2.fromPointer(result as Pointer);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getGesturePinchVector */
 export const GetGesturePinchVector = getGesturePinchVector;
@@ -1501,7 +1501,7 @@ export const DrawPixel = drawPixel;
 
 /** Draw a pixel using geometry (Vector version) [Can be slow, use with care] */
 export function drawPixelV(position: Structs.Vector2, color: Structs.Color): void {
-	(raylib.symbols.DrawPixelV as Function)(ptr(position.rawBuffer), color.toU32());
+	(raylib.symbols.DrawPixelV as Function)(position.toU64(), color.toU32());
 }
 /** @alias drawPixelV */
 export const DrawPixelV = drawPixelV;
@@ -1515,14 +1515,14 @@ export const DrawLine = drawLine;
 
 /** Draw a line (using gl lines) */
 export function drawLineV(startPos: Structs.Vector2, endPos: Structs.Vector2, color: Structs.Color): void {
-	(raylib.symbols.DrawLineV as Function)(ptr(startPos.rawBuffer), ptr(endPos.rawBuffer), color.toU32());
+	(raylib.symbols.DrawLineV as Function)(startPos.toU64(), endPos.toU64(), color.toU32());
 }
 /** @alias drawLineV */
 export const DrawLineV = drawLineV;
 
 /** Draw a line (using triangles/quads) */
 export function drawLineEx(startPos: Structs.Vector2, endPos: Structs.Vector2, thick: number, color: Structs.Color): void {
-	(raylib.symbols.DrawLineEx as Function)(ptr(startPos.rawBuffer), ptr(endPos.rawBuffer), thick, color.toU32());
+	(raylib.symbols.DrawLineEx as Function)(startPos.toU64(), endPos.toU64(), thick, color.toU32());
 }
 /** @alias drawLineEx */
 export const DrawLineEx = drawLineEx;
@@ -1536,7 +1536,7 @@ export const DrawLineStrip = drawLineStrip;
 
 /** Draw line segment cubic-bezier in-out interpolation */
 export function drawLineBezier(startPos: Structs.Vector2, endPos: Structs.Vector2, thick: number, color: Structs.Color): void {
-	(raylib.symbols.DrawLineBezier as Function)(ptr(startPos.rawBuffer), ptr(endPos.rawBuffer), thick, color.toU32());
+	(raylib.symbols.DrawLineBezier as Function)(startPos.toU64(), endPos.toU64(), thick, color.toU32());
 }
 /** @alias drawLineBezier */
 export const DrawLineBezier = drawLineBezier;
@@ -1550,14 +1550,14 @@ export const DrawCircle = drawCircle;
 
 /** Draw a piece of a circle */
 export function drawCircleSector(center: Structs.Vector2, radius: number, startAngle: number, endAngle: number, segments: number, color: Structs.Color): void {
-	(raylib.symbols.DrawCircleSector as Function)(ptr(center.rawBuffer), radius, startAngle, endAngle, segments, color.toU32());
+	(raylib.symbols.DrawCircleSector as Function)(center.toU64(), radius, startAngle, endAngle, segments, color.toU32());
 }
 /** @alias drawCircleSector */
 export const DrawCircleSector = drawCircleSector;
 
 /** Draw circle sector outline */
 export function drawCircleSectorLines(center: Structs.Vector2, radius: number, startAngle: number, endAngle: number, segments: number, color: Structs.Color): void {
-	(raylib.symbols.DrawCircleSectorLines as Function)(ptr(center.rawBuffer), radius, startAngle, endAngle, segments, color.toU32());
+	(raylib.symbols.DrawCircleSectorLines as Function)(center.toU64(), radius, startAngle, endAngle, segments, color.toU32());
 }
 /** @alias drawCircleSectorLines */
 export const DrawCircleSectorLines = drawCircleSectorLines;
@@ -1571,7 +1571,7 @@ export const DrawCircleGradient = drawCircleGradient;
 
 /** Draw a color-filled circle (Vector version) */
 export function drawCircleV(center: Structs.Vector2, radius: number, color: Structs.Color): void {
-	(raylib.symbols.DrawCircleV as Function)(ptr(center.rawBuffer), radius, color.toU32());
+	(raylib.symbols.DrawCircleV as Function)(center.toU64(), radius, color.toU32());
 }
 /** @alias drawCircleV */
 export const DrawCircleV = drawCircleV;
@@ -1585,7 +1585,7 @@ export const DrawCircleLines = drawCircleLines;
 
 /** Draw circle outline (Vector version) */
 export function drawCircleLinesV(center: Structs.Vector2, radius: number, color: Structs.Color): void {
-	(raylib.symbols.DrawCircleLinesV as Function)(ptr(center.rawBuffer), radius, color.toU32());
+	(raylib.symbols.DrawCircleLinesV as Function)(center.toU64(), radius, color.toU32());
 }
 /** @alias drawCircleLinesV */
 export const DrawCircleLinesV = drawCircleLinesV;
@@ -1606,14 +1606,14 @@ export const DrawEllipseLines = drawEllipseLines;
 
 /** Draw ring */
 export function drawRing(center: Structs.Vector2, innerRadius: number, outerRadius: number, startAngle: number, endAngle: number, segments: number, color: Structs.Color): void {
-	(raylib.symbols.DrawRing as Function)(ptr(center.rawBuffer), innerRadius, outerRadius, startAngle, endAngle, segments, color.toU32());
+	(raylib.symbols.DrawRing as Function)(center.toU64(), innerRadius, outerRadius, startAngle, endAngle, segments, color.toU32());
 }
 /** @alias drawRing */
 export const DrawRing = drawRing;
 
 /** Draw ring outline */
 export function drawRingLines(center: Structs.Vector2, innerRadius: number, outerRadius: number, startAngle: number, endAngle: number, segments: number, color: Structs.Color): void {
-	(raylib.symbols.DrawRingLines as Function)(ptr(center.rawBuffer), innerRadius, outerRadius, startAngle, endAngle, segments, color.toU32());
+	(raylib.symbols.DrawRingLines as Function)(center.toU64(), innerRadius, outerRadius, startAngle, endAngle, segments, color.toU32());
 }
 /** @alias drawRingLines */
 export const DrawRingLines = drawRingLines;
@@ -1627,7 +1627,7 @@ export const DrawRectangle = drawRectangle;
 
 /** Draw a color-filled rectangle (Vector version) */
 export function drawRectangleV(position: Structs.Vector2, size: Structs.Vector2, color: Structs.Color): void {
-	(raylib.symbols.DrawRectangleV as Function)(ptr(position.rawBuffer), ptr(size.rawBuffer), color.toU32());
+	(raylib.symbols.DrawRectangleV as Function)(position.toU64(), size.toU64(), color.toU32());
 }
 /** @alias drawRectangleV */
 export const DrawRectangleV = drawRectangleV;
@@ -1641,7 +1641,7 @@ export const DrawRectangleRec = drawRectangleRec;
 
 /** Draw a color-filled rectangle with pro parameters */
 export function drawRectanglePro(rec: Structs.Rectangle, origin: Structs.Vector2, rotation: number, color: Structs.Color): void {
-	(raylib.symbols.DrawRectanglePro as Function)(ptr(rec.rawBuffer), ptr(origin.rawBuffer), rotation, color.toU32());
+	(raylib.symbols.DrawRectanglePro as Function)(ptr(rec.rawBuffer), origin.toU64(), rotation, color.toU32());
 }
 /** @alias drawRectanglePro */
 export const DrawRectanglePro = drawRectanglePro;
@@ -1704,14 +1704,14 @@ export const DrawRectangleRoundedLinesEx = drawRectangleRoundedLinesEx;
 
 /** Draw a color-filled triangle (vertex in counter-clockwise order!) */
 export function drawTriangle(v1: Structs.Vector2, v2: Structs.Vector2, v3: Structs.Vector2, color: Structs.Color): void {
-	(raylib.symbols.DrawTriangle as Function)(ptr(v1.rawBuffer), ptr(v2.rawBuffer), ptr(v3.rawBuffer), color.toU32());
+	(raylib.symbols.DrawTriangle as Function)(v1.toU64(), v2.toU64(), v3.toU64(), color.toU32());
 }
 /** @alias drawTriangle */
 export const DrawTriangle = drawTriangle;
 
 /** Draw triangle outline (vertex in counter-clockwise order!) */
 export function drawTriangleLines(v1: Structs.Vector2, v2: Structs.Vector2, v3: Structs.Vector2, color: Structs.Color): void {
-	(raylib.symbols.DrawTriangleLines as Function)(ptr(v1.rawBuffer), ptr(v2.rawBuffer), ptr(v3.rawBuffer), color.toU32());
+	(raylib.symbols.DrawTriangleLines as Function)(v1.toU64(), v2.toU64(), v3.toU64(), color.toU32());
 }
 /** @alias drawTriangleLines */
 export const DrawTriangleLines = drawTriangleLines;
@@ -1732,21 +1732,21 @@ export const DrawTriangleStrip = drawTriangleStrip;
 
 /** Draw a regular polygon (Vector version) */
 export function drawPoly(center: Structs.Vector2, sides: number, radius: number, rotation: number, color: Structs.Color): void {
-	(raylib.symbols.DrawPoly as Function)(ptr(center.rawBuffer), sides, radius, rotation, color.toU32());
+	(raylib.symbols.DrawPoly as Function)(center.toU64(), sides, radius, rotation, color.toU32());
 }
 /** @alias drawPoly */
 export const DrawPoly = drawPoly;
 
 /** Draw a polygon outline of n sides */
 export function drawPolyLines(center: Structs.Vector2, sides: number, radius: number, rotation: number, color: Structs.Color): void {
-	(raylib.symbols.DrawPolyLines as Function)(ptr(center.rawBuffer), sides, radius, rotation, color.toU32());
+	(raylib.symbols.DrawPolyLines as Function)(center.toU64(), sides, radius, rotation, color.toU32());
 }
 /** @alias drawPolyLines */
 export const DrawPolyLines = drawPolyLines;
 
 /** Draw a polygon outline of n sides with extended parameters */
 export function drawPolyLinesEx(center: Structs.Vector2, sides: number, radius: number, rotation: number, lineThick: number, color: Structs.Color): void {
-	(raylib.symbols.DrawPolyLinesEx as Function)(ptr(center.rawBuffer), sides, radius, rotation, lineThick, color.toU32());
+	(raylib.symbols.DrawPolyLinesEx as Function)(center.toU64(), sides, radius, rotation, lineThick, color.toU32());
 }
 /** @alias drawPolyLinesEx */
 export const DrawPolyLinesEx = drawPolyLinesEx;
@@ -1788,75 +1788,75 @@ export const DrawSplineBezierCubic = drawSplineBezierCubic;
 
 /** Draw spline segment: Linear, 2 points */
 export function drawSplineSegmentLinear(p1: Structs.Vector2, p2: Structs.Vector2, thick: number, color: Structs.Color): void {
-	(raylib.symbols.DrawSplineSegmentLinear as Function)(ptr(p1.rawBuffer), ptr(p2.rawBuffer), thick, color.toU32());
+	(raylib.symbols.DrawSplineSegmentLinear as Function)(p1.toU64(), p2.toU64(), thick, color.toU32());
 }
 /** @alias drawSplineSegmentLinear */
 export const DrawSplineSegmentLinear = drawSplineSegmentLinear;
 
 /** Draw spline segment: B-Spline, 4 points */
 export function drawSplineSegmentBasis(p1: Structs.Vector2, p2: Structs.Vector2, p3: Structs.Vector2, p4: Structs.Vector2, thick: number, color: Structs.Color): void {
-	(raylib.symbols.DrawSplineSegmentBasis as Function)(ptr(p1.rawBuffer), ptr(p2.rawBuffer), ptr(p3.rawBuffer), ptr(p4.rawBuffer), thick, color.toU32());
+	(raylib.symbols.DrawSplineSegmentBasis as Function)(p1.toU64(), p2.toU64(), p3.toU64(), p4.toU64(), thick, color.toU32());
 }
 /** @alias drawSplineSegmentBasis */
 export const DrawSplineSegmentBasis = drawSplineSegmentBasis;
 
 /** Draw spline segment: Catmull-Rom, 4 points */
 export function drawSplineSegmentCatmullRom(p1: Structs.Vector2, p2: Structs.Vector2, p3: Structs.Vector2, p4: Structs.Vector2, thick: number, color: Structs.Color): void {
-	(raylib.symbols.DrawSplineSegmentCatmullRom as Function)(ptr(p1.rawBuffer), ptr(p2.rawBuffer), ptr(p3.rawBuffer), ptr(p4.rawBuffer), thick, color.toU32());
+	(raylib.symbols.DrawSplineSegmentCatmullRom as Function)(p1.toU64(), p2.toU64(), p3.toU64(), p4.toU64(), thick, color.toU32());
 }
 /** @alias drawSplineSegmentCatmullRom */
 export const DrawSplineSegmentCatmullRom = drawSplineSegmentCatmullRom;
 
 /** Draw spline segment: Quadratic Bezier, 2 points, 1 control point */
 export function drawSplineSegmentBezierQuadratic(p1: Structs.Vector2, c2: Structs.Vector2, p3: Structs.Vector2, thick: number, color: Structs.Color): void {
-	(raylib.symbols.DrawSplineSegmentBezierQuadratic as Function)(ptr(p1.rawBuffer), ptr(c2.rawBuffer), ptr(p3.rawBuffer), thick, color.toU32());
+	(raylib.symbols.DrawSplineSegmentBezierQuadratic as Function)(p1.toU64(), c2.toU64(), p3.toU64(), thick, color.toU32());
 }
 /** @alias drawSplineSegmentBezierQuadratic */
 export const DrawSplineSegmentBezierQuadratic = drawSplineSegmentBezierQuadratic;
 
 /** Draw spline segment: Cubic Bezier, 2 points, 2 control points */
 export function drawSplineSegmentBezierCubic(p1: Structs.Vector2, c2: Structs.Vector2, c3: Structs.Vector2, p4: Structs.Vector2, thick: number, color: Structs.Color): void {
-	(raylib.symbols.DrawSplineSegmentBezierCubic as Function)(ptr(p1.rawBuffer), ptr(c2.rawBuffer), ptr(c3.rawBuffer), ptr(p4.rawBuffer), thick, color.toU32());
+	(raylib.symbols.DrawSplineSegmentBezierCubic as Function)(p1.toU64(), c2.toU64(), c3.toU64(), p4.toU64(), thick, color.toU32());
 }
 /** @alias drawSplineSegmentBezierCubic */
 export const DrawSplineSegmentBezierCubic = drawSplineSegmentBezierCubic;
 
 /** Get (evaluate) spline point: Linear */
 export function getSplinePointLinear(startPos: Structs.Vector2, endPos: Structs.Vector2, t: number): Structs.Vector2 {
-	const result = (raylib.symbols.GetSplinePointLinear as Function)(ptr(startPos.rawBuffer), ptr(endPos.rawBuffer), t);
-	return Structs.Vector2.fromPointer(result as Pointer);
+	const result = (raylib.symbols.GetSplinePointLinear as Function)(startPos.toU64(), endPos.toU64(), t);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getSplinePointLinear */
 export const GetSplinePointLinear = getSplinePointLinear;
 
 /** Get (evaluate) spline point: B-Spline */
 export function getSplinePointBasis(p1: Structs.Vector2, p2: Structs.Vector2, p3: Structs.Vector2, p4: Structs.Vector2, t: number): Structs.Vector2 {
-	const result = (raylib.symbols.GetSplinePointBasis as Function)(ptr(p1.rawBuffer), ptr(p2.rawBuffer), ptr(p3.rawBuffer), ptr(p4.rawBuffer), t);
-	return Structs.Vector2.fromPointer(result as Pointer);
+	const result = (raylib.symbols.GetSplinePointBasis as Function)(p1.toU64(), p2.toU64(), p3.toU64(), p4.toU64(), t);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getSplinePointBasis */
 export const GetSplinePointBasis = getSplinePointBasis;
 
 /** Get (evaluate) spline point: Catmull-Rom */
 export function getSplinePointCatmullRom(p1: Structs.Vector2, p2: Structs.Vector2, p3: Structs.Vector2, p4: Structs.Vector2, t: number): Structs.Vector2 {
-	const result = (raylib.symbols.GetSplinePointCatmullRom as Function)(ptr(p1.rawBuffer), ptr(p2.rawBuffer), ptr(p3.rawBuffer), ptr(p4.rawBuffer), t);
-	return Structs.Vector2.fromPointer(result as Pointer);
+	const result = (raylib.symbols.GetSplinePointCatmullRom as Function)(p1.toU64(), p2.toU64(), p3.toU64(), p4.toU64(), t);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getSplinePointCatmullRom */
 export const GetSplinePointCatmullRom = getSplinePointCatmullRom;
 
 /** Get (evaluate) spline point: Quadratic Bezier */
 export function getSplinePointBezierQuad(p1: Structs.Vector2, c2: Structs.Vector2, p3: Structs.Vector2, t: number): Structs.Vector2 {
-	const result = (raylib.symbols.GetSplinePointBezierQuad as Function)(ptr(p1.rawBuffer), ptr(c2.rawBuffer), ptr(p3.rawBuffer), t);
-	return Structs.Vector2.fromPointer(result as Pointer);
+	const result = (raylib.symbols.GetSplinePointBezierQuad as Function)(p1.toU64(), c2.toU64(), p3.toU64(), t);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getSplinePointBezierQuad */
 export const GetSplinePointBezierQuad = getSplinePointBezierQuad;
 
 /** Get (evaluate) spline point: Cubic Bezier */
 export function getSplinePointBezierCubic(p1: Structs.Vector2, c2: Structs.Vector2, c3: Structs.Vector2, p4: Structs.Vector2, t: number): Structs.Vector2 {
-	const result = (raylib.symbols.GetSplinePointBezierCubic as Function)(ptr(p1.rawBuffer), ptr(c2.rawBuffer), ptr(c3.rawBuffer), ptr(p4.rawBuffer), t);
-	return Structs.Vector2.fromPointer(result as Pointer);
+	const result = (raylib.symbols.GetSplinePointBezierCubic as Function)(p1.toU64(), c2.toU64(), c3.toU64(), p4.toU64(), t);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias getSplinePointBezierCubic */
 export const GetSplinePointBezierCubic = getSplinePointBezierCubic;
@@ -1870,63 +1870,63 @@ export const CheckCollisionRecs = checkCollisionRecs;
 
 /** Check collision between two circles */
 export function checkCollisionCircles(center1: Structs.Vector2, radius1: number, center2: Structs.Vector2, radius2: number): boolean {
-	return (raylib.symbols.CheckCollisionCircles as Function)(ptr(center1.rawBuffer), radius1, ptr(center2.rawBuffer), radius2) as boolean;
+	return (raylib.symbols.CheckCollisionCircles as Function)(center1.toU64(), radius1, center2.toU64(), radius2) as boolean;
 }
 /** @alias checkCollisionCircles */
 export const CheckCollisionCircles = checkCollisionCircles;
 
 /** Check collision between circle and rectangle */
 export function checkCollisionCircleRec(center: Structs.Vector2, radius: number, rec: Structs.Rectangle): boolean {
-	return (raylib.symbols.CheckCollisionCircleRec as Function)(ptr(center.rawBuffer), radius, ptr(rec.rawBuffer)) as boolean;
+	return (raylib.symbols.CheckCollisionCircleRec as Function)(center.toU64(), radius, ptr(rec.rawBuffer)) as boolean;
 }
 /** @alias checkCollisionCircleRec */
 export const CheckCollisionCircleRec = checkCollisionCircleRec;
 
 /** Check if circle collides with a line created betweeen two points [p1] and [p2] */
 export function checkCollisionCircleLine(center: Structs.Vector2, radius: number, p1: Structs.Vector2, p2: Structs.Vector2): boolean {
-	return (raylib.symbols.CheckCollisionCircleLine as Function)(ptr(center.rawBuffer), radius, ptr(p1.rawBuffer), ptr(p2.rawBuffer)) as boolean;
+	return (raylib.symbols.CheckCollisionCircleLine as Function)(center.toU64(), radius, p1.toU64(), p2.toU64()) as boolean;
 }
 /** @alias checkCollisionCircleLine */
 export const CheckCollisionCircleLine = checkCollisionCircleLine;
 
 /** Check if point is inside rectangle */
 export function checkCollisionPointRec(point: Structs.Vector2, rec: Structs.Rectangle): boolean {
-	return (raylib.symbols.CheckCollisionPointRec as Function)(ptr(point.rawBuffer), ptr(rec.rawBuffer)) as boolean;
+	return (raylib.symbols.CheckCollisionPointRec as Function)(point.toU64(), ptr(rec.rawBuffer)) as boolean;
 }
 /** @alias checkCollisionPointRec */
 export const CheckCollisionPointRec = checkCollisionPointRec;
 
 /** Check if point is inside circle */
 export function checkCollisionPointCircle(point: Structs.Vector2, center: Structs.Vector2, radius: number): boolean {
-	return (raylib.symbols.CheckCollisionPointCircle as Function)(ptr(point.rawBuffer), ptr(center.rawBuffer), radius) as boolean;
+	return (raylib.symbols.CheckCollisionPointCircle as Function)(point.toU64(), center.toU64(), radius) as boolean;
 }
 /** @alias checkCollisionPointCircle */
 export const CheckCollisionPointCircle = checkCollisionPointCircle;
 
 /** Check if point is inside a triangle */
 export function checkCollisionPointTriangle(point: Structs.Vector2, p1: Structs.Vector2, p2: Structs.Vector2, p3: Structs.Vector2): boolean {
-	return (raylib.symbols.CheckCollisionPointTriangle as Function)(ptr(point.rawBuffer), ptr(p1.rawBuffer), ptr(p2.rawBuffer), ptr(p3.rawBuffer)) as boolean;
+	return (raylib.symbols.CheckCollisionPointTriangle as Function)(point.toU64(), p1.toU64(), p2.toU64(), p3.toU64()) as boolean;
 }
 /** @alias checkCollisionPointTriangle */
 export const CheckCollisionPointTriangle = checkCollisionPointTriangle;
 
 /** Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold] */
 export function checkCollisionPointLine(point: Structs.Vector2, p1: Structs.Vector2, p2: Structs.Vector2, threshold: number): boolean {
-	return (raylib.symbols.CheckCollisionPointLine as Function)(ptr(point.rawBuffer), ptr(p1.rawBuffer), ptr(p2.rawBuffer), threshold) as boolean;
+	return (raylib.symbols.CheckCollisionPointLine as Function)(point.toU64(), p1.toU64(), p2.toU64(), threshold) as boolean;
 }
 /** @alias checkCollisionPointLine */
 export const CheckCollisionPointLine = checkCollisionPointLine;
 
 /** Check if point is within a polygon described by array of vertices */
 export function checkCollisionPointPoly(point: Structs.Vector2, points: number, pointCount: number): boolean {
-	return (raylib.symbols.CheckCollisionPointPoly as Function)(ptr(point.rawBuffer), points, pointCount) as boolean;
+	return (raylib.symbols.CheckCollisionPointPoly as Function)(point.toU64(), points, pointCount) as boolean;
 }
 /** @alias checkCollisionPointPoly */
 export const CheckCollisionPointPoly = checkCollisionPointPoly;
 
 /** Check the collision between two lines defined by two points each, returns collision point by reference */
 export function checkCollisionLines(startPos1: Structs.Vector2, endPos1: Structs.Vector2, startPos2: Structs.Vector2, endPos2: Structs.Vector2, collisionPoint: number): boolean {
-	return (raylib.symbols.CheckCollisionLines as Function)(ptr(startPos1.rawBuffer), ptr(endPos1.rawBuffer), ptr(startPos2.rawBuffer), ptr(endPos2.rawBuffer), collisionPoint) as boolean;
+	return (raylib.symbols.CheckCollisionLines as Function)(startPos1.toU64(), endPos1.toU64(), startPos2.toU64(), endPos2.toU64(), collisionPoint) as boolean;
 }
 /** @alias checkCollisionLines */
 export const CheckCollisionLines = checkCollisionLines;
@@ -2377,7 +2377,7 @@ export const ImageDrawPixel = imageDrawPixel;
 
 /** Draw pixel within an image (Vector version) */
 export function imageDrawPixelV(dst: number, position: Structs.Vector2, color: Structs.Color): void {
-	(raylib.symbols.ImageDrawPixelV as Function)(dst, ptr(position.rawBuffer), color.toU32());
+	(raylib.symbols.ImageDrawPixelV as Function)(dst, position.toU64(), color.toU32());
 }
 /** @alias imageDrawPixelV */
 export const ImageDrawPixelV = imageDrawPixelV;
@@ -2391,14 +2391,14 @@ export const ImageDrawLine = imageDrawLine;
 
 /** Draw line within an image (Vector version) */
 export function imageDrawLineV(dst: number, start: Structs.Vector2, end: Structs.Vector2, color: Structs.Color): void {
-	(raylib.symbols.ImageDrawLineV as Function)(dst, ptr(start.rawBuffer), ptr(end.rawBuffer), color.toU32());
+	(raylib.symbols.ImageDrawLineV as Function)(dst, start.toU64(), end.toU64(), color.toU32());
 }
 /** @alias imageDrawLineV */
 export const ImageDrawLineV = imageDrawLineV;
 
 /** Draw a line defining thickness within an image */
 export function imageDrawLineEx(dst: number, start: Structs.Vector2, end: Structs.Vector2, thick: number, color: Structs.Color): void {
-	(raylib.symbols.ImageDrawLineEx as Function)(dst, ptr(start.rawBuffer), ptr(end.rawBuffer), thick, color.toU32());
+	(raylib.symbols.ImageDrawLineEx as Function)(dst, start.toU64(), end.toU64(), thick, color.toU32());
 }
 /** @alias imageDrawLineEx */
 export const ImageDrawLineEx = imageDrawLineEx;
@@ -2412,7 +2412,7 @@ export const ImageDrawCircle = imageDrawCircle;
 
 /** Draw a filled circle within an image (Vector version) */
 export function imageDrawCircleV(dst: number, center: Structs.Vector2, radius: number, color: Structs.Color): void {
-	(raylib.symbols.ImageDrawCircleV as Function)(dst, ptr(center.rawBuffer), radius, color.toU32());
+	(raylib.symbols.ImageDrawCircleV as Function)(dst, center.toU64(), radius, color.toU32());
 }
 /** @alias imageDrawCircleV */
 export const ImageDrawCircleV = imageDrawCircleV;
@@ -2426,7 +2426,7 @@ export const ImageDrawCircleLines = imageDrawCircleLines;
 
 /** Draw circle outline within an image (Vector version) */
 export function imageDrawCircleLinesV(dst: number, center: Structs.Vector2, radius: number, color: Structs.Color): void {
-	(raylib.symbols.ImageDrawCircleLinesV as Function)(dst, ptr(center.rawBuffer), radius, color.toU32());
+	(raylib.symbols.ImageDrawCircleLinesV as Function)(dst, center.toU64(), radius, color.toU32());
 }
 /** @alias imageDrawCircleLinesV */
 export const ImageDrawCircleLinesV = imageDrawCircleLinesV;
@@ -2440,7 +2440,7 @@ export const ImageDrawRectangle = imageDrawRectangle;
 
 /** Draw rectangle within an image (Vector version) */
 export function imageDrawRectangleV(dst: number, position: Structs.Vector2, size: Structs.Vector2, color: Structs.Color): void {
-	(raylib.symbols.ImageDrawRectangleV as Function)(dst, ptr(position.rawBuffer), ptr(size.rawBuffer), color.toU32());
+	(raylib.symbols.ImageDrawRectangleV as Function)(dst, position.toU64(), size.toU64(), color.toU32());
 }
 /** @alias imageDrawRectangleV */
 export const ImageDrawRectangleV = imageDrawRectangleV;
@@ -2461,21 +2461,21 @@ export const ImageDrawRectangleLines = imageDrawRectangleLines;
 
 /** Draw triangle within an image */
 export function imageDrawTriangle(dst: number, v1: Structs.Vector2, v2: Structs.Vector2, v3: Structs.Vector2, color: Structs.Color): void {
-	(raylib.symbols.ImageDrawTriangle as Function)(dst, ptr(v1.rawBuffer), ptr(v2.rawBuffer), ptr(v3.rawBuffer), color.toU32());
+	(raylib.symbols.ImageDrawTriangle as Function)(dst, v1.toU64(), v2.toU64(), v3.toU64(), color.toU32());
 }
 /** @alias imageDrawTriangle */
 export const ImageDrawTriangle = imageDrawTriangle;
 
 /** Draw triangle with interpolated colors within an image */
 export function imageDrawTriangleEx(dst: number, v1: Structs.Vector2, v2: Structs.Vector2, v3: Structs.Vector2, c1: Structs.Color, c2: Structs.Color, c3: Structs.Color): void {
-	(raylib.symbols.ImageDrawTriangleEx as Function)(dst, ptr(v1.rawBuffer), ptr(v2.rawBuffer), ptr(v3.rawBuffer), c1.toU32(), c2.toU32(), c3.toU32());
+	(raylib.symbols.ImageDrawTriangleEx as Function)(dst, v1.toU64(), v2.toU64(), v3.toU64(), c1.toU32(), c2.toU32(), c3.toU32());
 }
 /** @alias imageDrawTriangleEx */
 export const ImageDrawTriangleEx = imageDrawTriangleEx;
 
 /** Draw triangle outline within an image */
 export function imageDrawTriangleLines(dst: number, v1: Structs.Vector2, v2: Structs.Vector2, v3: Structs.Vector2, color: Structs.Color): void {
-	(raylib.symbols.ImageDrawTriangleLines as Function)(dst, ptr(v1.rawBuffer), ptr(v2.rawBuffer), ptr(v3.rawBuffer), color.toU32());
+	(raylib.symbols.ImageDrawTriangleLines as Function)(dst, v1.toU64(), v2.toU64(), v3.toU64(), color.toU32());
 }
 /** @alias imageDrawTriangleLines */
 export const ImageDrawTriangleLines = imageDrawTriangleLines;
@@ -2510,7 +2510,7 @@ export const ImageDrawText = imageDrawText;
 
 /** Draw text (custom sprite font) within an image (destination) */
 export function imageDrawTextEx(dst: number, font: Structs.Font, text: string, position: Structs.Vector2, fontSize: number, spacing: number, tint: Structs.Color): void {
-	(raylib.symbols.ImageDrawTextEx as Function)(dst, ptr(font.rawBuffer), ptr(toCString(text)), ptr(position.rawBuffer), fontSize, spacing, tint.toU32());
+	(raylib.symbols.ImageDrawTextEx as Function)(dst, ptr(font.rawBuffer), ptr(toCString(text)), position.toU64(), fontSize, spacing, tint.toU32());
 }
 /** @alias imageDrawTextEx */
 export const ImageDrawTextEx = imageDrawTextEx;
@@ -2619,35 +2619,35 @@ export const DrawTexture = drawTexture;
 
 /** Draw a Texture2D with position defined as Vector2 */
 export function drawTextureV(texture: Structs.Texture, position: Structs.Vector2, tint: Structs.Color): void {
-	(raylib.symbols.DrawTextureV as Function)(ptr(texture.rawBuffer), ptr(position.rawBuffer), tint.toU32());
+	(raylib.symbols.DrawTextureV as Function)(ptr(texture.rawBuffer), position.toU64(), tint.toU32());
 }
 /** @alias drawTextureV */
 export const DrawTextureV = drawTextureV;
 
 /** Draw a Texture2D with extended parameters */
 export function drawTextureEx(texture: Structs.Texture, position: Structs.Vector2, rotation: number, scale: number, tint: Structs.Color): void {
-	(raylib.symbols.DrawTextureEx as Function)(ptr(texture.rawBuffer), ptr(position.rawBuffer), rotation, scale, tint.toU32());
+	(raylib.symbols.DrawTextureEx as Function)(ptr(texture.rawBuffer), position.toU64(), rotation, scale, tint.toU32());
 }
 /** @alias drawTextureEx */
 export const DrawTextureEx = drawTextureEx;
 
 /** Draw a part of a texture defined by a rectangle */
 export function drawTextureRec(texture: Structs.Texture, source: Structs.Rectangle, position: Structs.Vector2, tint: Structs.Color): void {
-	(raylib.symbols.DrawTextureRec as Function)(ptr(texture.rawBuffer), ptr(source.rawBuffer), ptr(position.rawBuffer), tint.toU32());
+	(raylib.symbols.DrawTextureRec as Function)(ptr(texture.rawBuffer), ptr(source.rawBuffer), position.toU64(), tint.toU32());
 }
 /** @alias drawTextureRec */
 export const DrawTextureRec = drawTextureRec;
 
 /** Draw a part of a texture defined by a rectangle with 'pro' parameters */
 export function drawTexturePro(texture: Structs.Texture, source: Structs.Rectangle, dest: Structs.Rectangle, origin: Structs.Vector2, rotation: number, tint: Structs.Color): void {
-	(raylib.symbols.DrawTexturePro as Function)(ptr(texture.rawBuffer), ptr(source.rawBuffer), ptr(dest.rawBuffer), ptr(origin.rawBuffer), rotation, tint.toU32());
+	(raylib.symbols.DrawTexturePro as Function)(ptr(texture.rawBuffer), ptr(source.rawBuffer), ptr(dest.rawBuffer), origin.toU64(), rotation, tint.toU32());
 }
 /** @alias drawTexturePro */
 export const DrawTexturePro = drawTexturePro;
 
 /** Draws a texture (or part of it) that stretches or shrinks nicely */
 export function drawTextureNPatch(texture: Structs.Texture, nPatchInfo: Structs.NPatchInfo, dest: Structs.Rectangle, origin: Structs.Vector2, rotation: number, tint: Structs.Color): void {
-	(raylib.symbols.DrawTextureNPatch as Function)(ptr(texture.rawBuffer), ptr(nPatchInfo.rawBuffer), ptr(dest.rawBuffer), ptr(origin.rawBuffer), rotation, tint.toU32());
+	(raylib.symbols.DrawTextureNPatch as Function)(ptr(texture.rawBuffer), ptr(nPatchInfo.rawBuffer), ptr(dest.rawBuffer), origin.toU64(), rotation, tint.toU32());
 }
 /** @alias drawTextureNPatch */
 export const DrawTextureNPatch = drawTextureNPatch;
@@ -2883,28 +2883,28 @@ export const DrawText = drawText;
 
 /** Draw text using font and additional parameters */
 export function drawTextEx(font: Structs.Font, text: string, position: Structs.Vector2, fontSize: number, spacing: number, tint: Structs.Color): void {
-	(raylib.symbols.DrawTextEx as Function)(ptr(font.rawBuffer), ptr(toCString(text)), ptr(position.rawBuffer), fontSize, spacing, tint.toU32());
+	(raylib.symbols.DrawTextEx as Function)(ptr(font.rawBuffer), ptr(toCString(text)), position.toU64(), fontSize, spacing, tint.toU32());
 }
 /** @alias drawTextEx */
 export const DrawTextEx = drawTextEx;
 
 /** Draw text using Font and pro parameters (rotation) */
 export function drawTextPro(font: Structs.Font, text: string, position: Structs.Vector2, origin: Structs.Vector2, rotation: number, fontSize: number, spacing: number, tint: Structs.Color): void {
-	(raylib.symbols.DrawTextPro as Function)(ptr(font.rawBuffer), ptr(toCString(text)), ptr(position.rawBuffer), ptr(origin.rawBuffer), rotation, fontSize, spacing, tint.toU32());
+	(raylib.symbols.DrawTextPro as Function)(ptr(font.rawBuffer), ptr(toCString(text)), position.toU64(), origin.toU64(), rotation, fontSize, spacing, tint.toU32());
 }
 /** @alias drawTextPro */
 export const DrawTextPro = drawTextPro;
 
 /** Draw one character (codepoint) */
 export function drawTextCodepoint(font: Structs.Font, codepoint: number, position: Structs.Vector2, fontSize: number, tint: Structs.Color): void {
-	(raylib.symbols.DrawTextCodepoint as Function)(ptr(font.rawBuffer), codepoint, ptr(position.rawBuffer), fontSize, tint.toU32());
+	(raylib.symbols.DrawTextCodepoint as Function)(ptr(font.rawBuffer), codepoint, position.toU64(), fontSize, tint.toU32());
 }
 /** @alias drawTextCodepoint */
 export const DrawTextCodepoint = drawTextCodepoint;
 
 /** Draw multiple character (codepoint) */
 export function drawTextCodepoints(font: Structs.Font, codepoints: number, codepointCount: number, position: Structs.Vector2, fontSize: number, spacing: number, tint: Structs.Color): void {
-	(raylib.symbols.DrawTextCodepoints as Function)(ptr(font.rawBuffer), codepoints, codepointCount, ptr(position.rawBuffer), fontSize, spacing, tint.toU32());
+	(raylib.symbols.DrawTextCodepoints as Function)(ptr(font.rawBuffer), codepoints, codepointCount, position.toU64(), fontSize, spacing, tint.toU32());
 }
 /** @alias drawTextCodepoints */
 export const DrawTextCodepoints = drawTextCodepoints;
@@ -2926,7 +2926,7 @@ export const MeasureText = measureText;
 /** Measure string size for Font */
 export function measureTextEx(font: Structs.Font, text: string, fontSize: number, spacing: number): Structs.Vector2 {
 	const result = (raylib.symbols.MeasureTextEx as Function)(ptr(font.rawBuffer), ptr(toCString(text)), fontSize, spacing);
-	return Structs.Vector2.fromPointer(result as Pointer);
+	return Structs.Vector2.fromU64(result as bigint);
 }
 /** @alias measureTextEx */
 export const MeasureTextEx = measureTextEx;
@@ -3272,7 +3272,7 @@ export const DrawCapsuleWires = drawCapsuleWires;
 
 /** Draw a plane XZ */
 export function drawPlane(centerPos: Structs.Vector3, size: Structs.Vector2, color: Structs.Color): void {
-	(raylib.symbols.DrawPlane as Function)(ptr(centerPos.rawBuffer), ptr(size.rawBuffer), color.toU32());
+	(raylib.symbols.DrawPlane as Function)(ptr(centerPos.rawBuffer), size.toU64(), color.toU32());
 }
 /** @alias drawPlane */
 export const DrawPlane = drawPlane;
@@ -3387,14 +3387,14 @@ export const DrawBillboard = drawBillboard;
 
 /** Draw a billboard texture defined by source */
 export function drawBillboardRec(camera: Structs.Camera3D, texture: Structs.Texture, source: Structs.Rectangle, position: Structs.Vector3, size: Structs.Vector2, tint: Structs.Color): void {
-	(raylib.symbols.DrawBillboardRec as Function)(ptr(camera.rawBuffer), ptr(texture.rawBuffer), ptr(source.rawBuffer), ptr(position.rawBuffer), ptr(size.rawBuffer), tint.toU32());
+	(raylib.symbols.DrawBillboardRec as Function)(ptr(camera.rawBuffer), ptr(texture.rawBuffer), ptr(source.rawBuffer), ptr(position.rawBuffer), size.toU64(), tint.toU32());
 }
 /** @alias drawBillboardRec */
 export const DrawBillboardRec = drawBillboardRec;
 
 /** Draw a billboard texture defined by source and rotation */
 export function drawBillboardPro(camera: Structs.Camera3D, texture: Structs.Texture, source: Structs.Rectangle, position: Structs.Vector3, up: Structs.Vector3, size: Structs.Vector2, origin: Structs.Vector2, rotation: number, tint: Structs.Color): void {
-	(raylib.symbols.DrawBillboardPro as Function)(ptr(camera.rawBuffer), ptr(texture.rawBuffer), ptr(source.rawBuffer), ptr(position.rawBuffer), ptr(up.rawBuffer), ptr(size.rawBuffer), ptr(origin.rawBuffer), rotation, tint.toU32());
+	(raylib.symbols.DrawBillboardPro as Function)(ptr(camera.rawBuffer), ptr(texture.rawBuffer), ptr(source.rawBuffer), ptr(position.rawBuffer), ptr(up.rawBuffer), size.toU64(), origin.toU64(), rotation, tint.toU32());
 }
 /** @alias drawBillboardPro */
 export const DrawBillboardPro = drawBillboardPro;

@@ -28,7 +28,7 @@
 	"scripts": {
 		"generate": "bun run src/generator/generate.ts",
 		"typecheck": "tsc --noEmit",
-		"example": "bun run examples/basic_window.ts",
+		"example": "bun run examples/core/core_basic_window.ts",
 		"prepublishOnly": "bun run generate && bun run typecheck"
 	},
 	"module": "index.ts",
