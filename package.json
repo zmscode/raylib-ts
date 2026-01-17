@@ -1,0 +1,60 @@
+{
+	"name": "raylib-ts",
+	"version": "0.1.0",
+	"description": "TypeScript bindings for raylib using Bun FFI",
+	"author": "zmscode",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/zmscode/raylib-ts.git"
+	},
+	"bugs": {
+		"url": "https://github.com/zmscode/raylib-ts/issues"
+	},
+	"homepage": "https://github.com/zmscode/raylib-ts#readme",
+	"keywords": [
+		"raylib",
+		"gamedev",
+		"game",
+		"graphics",
+		"2d",
+		"3d",
+		"opengl",
+		"bun",
+		"ffi",
+		"typescript",
+		"bindings"
+	],
+	"scripts": {
+		"generate": "bun run src/generator/generate.ts",
+		"typecheck": "tsc --noEmit",
+		"example": "bun run examples/basic_window.ts",
+		"prepublishOnly": "bun run generate && bun run typecheck"
+	},
+	"module": "index.ts",
+	"type": "module",
+	"main": "index.ts",
+	"types": "index.ts",
+	"exports": {
+		".": {
+			"bun": "./index.ts",
+			"import": "./index.ts",
+			"types": "./index.ts"
+		}
+	},
+	"files": [
+		"index.ts",
+		"src/generated/**/*.ts",
+		"src/lib/**/*.ts",
+		"lib/native/**/*"
+	],
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"engines": {
+		"bun": ">=1.0.0"
+	}
+}

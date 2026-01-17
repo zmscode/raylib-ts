@@ -1,0 +1,27 @@
+# Source files not needed in package
+src/generator/
+examples/
+tests/
+
+# Config files
+tsconfig.json
+.gitignore
+.git/
+CLAUDE.md
+
+# Example files
+example.ts
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temp files
+*.log
+*.tmp
